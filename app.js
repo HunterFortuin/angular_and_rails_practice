@@ -42,8 +42,8 @@ function($scope, posts){
             link: $scope.link,
             upvotes: 0,
             comments: [
-                {author: 'Joe', body: 'Your post is shit', upvotes: 100},
-                {author: 'Bob', body: 'Cyberbullying you for days', upvotes: 10}
+                {author: 'Joe', body: 'I love your post!', upvotes: 100},
+                {author: 'Bob', body: 'Gosh golly, you are a wonderful linker', upvotes: 10}
             ]
         });
         $scope.title = '';
@@ -61,4 +61,17 @@ function($scope, posts){
 'posts',
 function($scope, $stateParams, posts){
     $scope.post = posts.posts[$stateParams.id];
+    $scope.addComment = function(){
+        if($scope.body === '') { return; }
+        $scope.post.comments.push({
+            body: $scope.body,
+            author: 'user',
+            upvotes: 0
+        });
+        $scope.body
+    };
+
+    $scope.incrementUpvotes = function(comment) {
+        comment.upvotes += 1;
+    };
 }]);
